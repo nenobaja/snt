@@ -2,14 +2,14 @@ var service = {};
 var usersdata = require("./data.json");
 var servicehelper = require("./servicehelper.js");
 
-service.getUsers = function(){
+service.getUsers = function () {
 
     var users = usersdata;
 
     return users;
 }
 
-service.getUserDetails = function(id){
+service.getUserDetails = function (id) {
 
     var userDetails;
 
@@ -26,7 +26,7 @@ service.getUserDetails = function(id){
 service.getFriends = function (id) {
 
     var friendsIds = [];
-    
+
     for (var f = 0; f < usersdata.length; f++) {
         if (id == usersdata[f].id) {
             friendsIds = usersdata[f].friends;

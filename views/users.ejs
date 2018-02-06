@@ -1,39 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <% include ./head %>
 </head>
+
 <body>
     <% include ./navbars/navbarusers %>
 
-<div class="container">
-        <h1>Users</h1>
-       
-        <table class="table table-hover">
+        <div class="container">
+            <h1>Users</h1>
+
+            <table class="table table-hover">
                 <thead>
-                  <tr>
+                    <tr>
                         <th>id</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    
-                  </tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+
+                    </tr>
                 </thead>
                 <tbody>
-                        <% users.forEach(function(user) { %>
-                            <tr>
-                                    <td><%= user.id %></td>
-                                    <td><%= user.firstName %></td>
-                                    <td><%= user.surname %></td>
-                                    <td><a href="/users/<%= user.id %>/details" class="btn btn-info" 
-                                      role="button">Details</a></td>
-                                  </tr>
+                    <% users.forEach(function(user) { %>
+                        <tr>
+                            <td>
+                                <%= user.id %>
+                            </td>
+                            <td>
+                                <%= user.firstName %>
+                            </td>
+                            <td>
+                                <%= user.surname %>
+                            </td>
+                            <td><a href="/users/<%= user.id %>/details" class="btn btn-info" role="button">Details</a></td>
+                        </tr>
                         <% }); %>
-               
+
                 </tbody>
-              </table>
- 
-</div>
+            </table>
+
+        </div>
 
 </body>
+
 </html>
