@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./head %>
+</head>
+<body>
+        <% include ./navbars/navbardetails %>
+
+<div class="container">
+        <h2>user: <%= userdetails.firstName %> <%= userdetails.surname %></h2>
+           
+        
+       
+        <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Firstname</th>
+                    <th>Surname</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Number of friends</th>
+               </thead>
+                <tbody>
+                       
+                            <tr>
+                                    <td><%= userdetails.id %></td>
+                                    <td><%= userdetails.firstName %></td>
+                                    <td><%= userdetails.surname %></td>
+                                    <td><%= userdetails.age %></td>
+                                    <td><%= userdetails.gender %></td>
+                                    <td><%= userdetails.friends.length %></td>
+                                  </tr>
+                      
+                 
+                 
+                </tbody>
+              </table>
+ 
+              <div class="btn-group btn-group-justified">
+                    <a onclick="loadDoc('friends');" class="btn btn-primary">Friends</a>
+                    <a onclick="loadDoc('friendsoffriends');" class="btn btn-primary">FriendsOfFriends</a>
+                    <a onclick="loadDoc('suggestedfriends');" class="btn btn-primary">SugesstedFriends</a>
+                  </div>
+            
+
+
+<table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Firstname</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Number of friends</th>
+       </thead>
+        <tbody id=tbo>
+           
+        </tbody>
+
+      </table>
+      
+    <script>
+
+function showTable(arr) {
+   
+     var result = arr;
+
+     if(result.length > 0){
+       
+            var text = "";
+            var i;
+            for (i = 0; i < result.length; i++) {
+
+                
+                      
+                text += "<tr><td>"+result[i].id+"</td>"+
+                     "<td>"+result[i].firstName+"</td>"+
+                     "<td>"+result[i].surname+"</td>"+
+                     "<td>"+result[i].age+"</td>"+
+                     "<td>"+result[i].gender+"</td>"+
+                     "<td>"+result[i].friends.length+"</td>";
+            
+            }
+        
+            document.getElementById("tbo").innerHTML = text;
+    }
+
+} 
+
+
+function loadDoc(burl) {
+
+    console.log("4");
+    var url = burl;
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+       var myArr = JSON.parse(this.responseText);
+       
+       showTable(myArr);
+        //document.getElementById("demo").innerHTML = myObj;
+    }
+};
+xmlhttp.open("GET",url, true);
+xmlhttp.send();
+}
+
+</script>
+ </div>
+</body>
+</html>
